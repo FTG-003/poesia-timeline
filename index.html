@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Sentiero dei Poeti — Timeline</title>
-<meta name="description" content="Un viaggio attraverso due secoli di poesia. Da Dickinson a Bukowski, ogni poeta è un albero in questo bosco del tempo." />
+<title>Il Sentiero dei Poeti</title>
+<meta name="description" content="Da Dickinson a Bukowski: un viaggio attraverso due secoli di poesia. Ogni poeta un incontro, ogni incontro un frammento." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet" />
 <style>
-/* ═══════════════════════════════════════
-   RESET & BASE
-   ═══════════════════════════════════════ */
+/* ══════════════════════════════════════════════
+   RESET · FONT · PALETTE
+   ══════════════════════════════════════════════ */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
@@ -20,15 +20,15 @@
   --color-bg: #faf9f6;
   --color-text: #1a1a1a;
   --color-text-soft: #7a7a7a;
-  --color-text-faint: #b0b0a8;
+  --color-text-faint: #c0bdb5;
   --color-accent: #8b2252;
-  --color-accent-glow: rgba(139, 34, 82, 0.15);
+  --color-accent-glow: rgba(139, 34, 82, 0.12);
   --color-border: #e0ddd5;
-  --faro-color: #8b2252;
-  --gold: #b8860b;
+  --measure: 30rem;
   --green: #6b8e6b;
+  --gold: #b8860b;
   --blue: #4a6a8a;
-  --measure: 42rem;
+  --faro: #8b2252;
 }
 
 html { scroll-behavior: smooth; }
@@ -39,17 +39,25 @@ body {
   line-height: 1.7;
   color: var(--color-text);
   background: var(--color-bg);
-  min-height: 100vh;
-  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
 a { color: var(--color-accent); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.3s; }
 a:hover { border-color: var(--color-accent); }
 
-/* ═══════════════════════════════════════
-   HERO SECTION
-   ═══════════════════════════════════════ */
+/* ══════════════════════════════════════════════
+   WRAPPER — everything centered, measure
+   ══════════════════════════════════════════════ */
+.wrapper {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+}
+
+/* ══════════════════════════════════════════════
+   HERO — full screen, center, silence
+   ══════════════════════════════════════════════ */
 .hero {
   height: 100vh;
   display: flex;
@@ -57,519 +65,351 @@ a:hover { border-color: var(--color-accent); }
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 2rem;
   position: relative;
   background:
-    radial-gradient(ellipse at 20% 50%, rgba(139,34,82,0.04) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 50%, rgba(139,34,82,0.04) 0%, transparent 60%);
+    radial-gradient(ellipse at 50% 30%, rgba(139,34,82,0.03) 0%, transparent 70%);
 }
 
 .hero h1 {
-  font-family: var(--font-ui);
-  font-size: clamp(2rem, 5vw, 4rem);
-  font-weight: 200;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
-  margin-bottom: 1.5rem;
-  color: var(--color-text);
-}
-
-.hero h1 em {
   font-family: var(--font-body);
-  font-style: italic;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
   font-weight: 400;
-  color: var(--color-accent);
-}
-
-.hero p {
-  font-size: clamp(1rem, 2vw, 1.25rem);
-  color: var(--color-text-soft);
-  max-width: 32rem;
   font-style: italic;
-  margin-bottom: 2.5rem;
-}
-
-.hero-year {
-  position: absolute;
-  font-family: var(--font-ui);
-  font-size: clamp(6rem, 15vw, 12rem);
-  font-weight: 200;
-  color: rgba(139,34,82,0.06);
-  letter-spacing: -0.05em;
-  user-select: none;
-  pointer-events: none;
-}
-
-.hero-year--start { bottom: 5%; left: 5%; }
-.hero-year--end { top: 5%; right: 5%; }
-
-.hero-scroll {
-  position: absolute;
-  bottom: 2rem;
-  font-family: var(--font-ui);
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: var(--color-text-faint);
-  animation: float 2s ease-in-out infinite;
-  cursor: pointer;
-  border: none;
-  background: none;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-}
-
-/* ═══════════════════════════════════════
-   TIMELINE — the main strip
-   ═══════════════════════════════════════ */
-.timeline-section {
-  position: relative;
-  min-height: 100vh;
-  padding: 4rem 0 6rem;
-  overflow: hidden;
-}
-
-.timeline-header {
-  text-align: center;
-  margin-bottom: 3rem;
-  padding: 0 1.5rem;
-}
-
-.timeline-header h2 {
-  font-family: var(--font-ui);
-  font-size: 1.5rem;
-  font-weight: 300;
+  line-height: 1.15;
   letter-spacing: -0.02em;
-  color: var(--color-text-soft);
+  margin-bottom: 2rem;
+  max-width: 22rem;
 }
 
-.timeline-header h2 strong {
-  color: var(--color-text);
+.hero h1 .faro {
+  color: var(--color-accent);
+  font-style: normal;
   font-weight: 500;
 }
 
-/* The scrollable container */
-.timeline-track {
-  overflow-x: auto;
-  overflow-y: hidden;
-  padding: 1rem 0 3rem;
-  cursor: grab;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
+.hero-sub {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--color-text-faint);
+  margin-bottom: 3rem;
 }
 
-.timeline-track:active { cursor: grabbing; }
-
-.timeline-track::-webkit-scrollbar {
-  height: 4px;
+.hero-years {
+  font-family: var(--font-ui);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: var(--color-text-faint);
 }
 
-.timeline-track::-webkit-scrollbar-track {
-  background: var(--color-border);
-  border-radius: 2px;
-}
-
-.timeline-track::-webkit-scrollbar-thumb {
-  background: var(--color-accent);
-  border-radius: 2px;
-}
-
-/* The actual timeline surface */
-.timeline-surface {
+.hero-years span {
+  display: inline-block;
+  padding: 0 1.5rem;
   position: relative;
-  width: 2200px; /* wide enough for horizontal scroll */
-  height: 420px;
-  padding: 0 4rem;
-  margin: 0 auto;
 }
 
-/* Year axis */
-.timeline-axis {
-  position: absolute;
-  top: 50%;
-  left: 4rem;
-  right: 4rem;
-  height: 1px;
-  background: var(--color-border);
-  transform: translateY(-50%);
-}
-
-.timeline-axis::before,
-.timeline-axis::after {
+.hero-years span::before,
+.hero-years span::after {
   content: '';
   position: absolute;
+  top: 50%;
+  width: 0.5rem;
+  height: 1px;
+  background: var(--color-border);
+}
+.hero-years span::before { right: 100%; }
+.hero-years span::after { left: 100%; }
+
+.hero-scroll {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-ui);
+  font-size: 0.55rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-text-faint);
+  background: none;
+  border: none;
+  cursor: pointer;
+  animation: breathe 2.5s ease-in-out infinite;
+  opacity: 0.5;
+  transition: opacity 0.4s;
+}
+.hero-scroll:hover { opacity: 1; }
+
+@keyframes breathe {
+  0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.5; }
+  50% { transform: translateX(-50%) translateY(-5px); opacity: 1; }
+}
+
+/* ══════════════════════════════════════════════
+   SENTIERO — the vertical timeline journey
+   ══════════════════════════════════════════════ */
+.sentiero {
+  padding: 6rem 0 4rem;
+  position: relative;
+}
+
+/* The vertical line */
+.sentiero::before {
+  content: '';
+  position: absolute;
+  top: 6rem;
+  bottom: 4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  background: var(--color-border);
+}
+
+/* ═══════════ ERA MARKERS ═══════════ */
+.era {
+  position: relative;
+  text-align: center;
+  padding: 3rem 0;
+  z-index: 2;
+}
+
+.era-label {
+  font-family: var(--font-ui);
+  font-size: 0.55rem;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--color-text-faint);
+  background: var(--color-bg);
+  padding: 0.5rem 1rem;
+  display: inline-block;
+  border: 1px solid var(--color-border);
+  border-radius: 2px;
+  user-select: none;
+  position: relative;
+}
+
+/* ═══════════ POET ENCOUNTER ═══════════ */
+.encounter {
+  position: relative;
+  padding: 4rem 0;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(2rem);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.encounter.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Dot on the timeline */
+.encounter::before {
+  content: '';
+  position: absolute;
+  top: 4rem;
+  left: 50%;
+  transform: translateX(-50%);
   width: 8px;
   height: 8px;
   border-radius: 50%;
   background: var(--color-border);
-  top: 50%;
-  transform: translateY(-50%);
-}
-.timeline-axis::before { left: 0; }
-.timeline-axis::after { right: 0; }
-
-/* Year markers on the axis */
-.year-marker {
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  font-family: var(--font-ui);
-  font-size: 0.6rem;
-  color: var(--color-text-faint);
-  letter-spacing: 0.05em;
-  text-align: center;
+  z-index: 3;
+  transition: background 0.4s, box-shadow 0.4s;
 }
 
-.year-marker::before {
-  content: '';
-  position: absolute;
-  top: -6px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 1px;
-  height: 12px;
-  background: var(--color-border);
-}
-
-.year-marker--major {
-  font-size: 0.75rem;
-  color: var(--color-text-soft);
-  font-weight: 500;
-}
-
-.year-marker--major::before {
-  height: 18px;
-  width: 2px;
-  background: var(--color-text-faint);
-}
-
-/* ═══════════ POET NODES ═══════════ */
-.poet-node {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 2;
-  cursor: pointer;
-}
-
-/* The life bar */
-.poet-bar {
-  position: absolute;
-  top: 50%;
-  height: 6px;
-  border-radius: 3px;
-  transform: translateY(-50%);
-  opacity: 0.5;
-  transition: opacity 0.4s, height 0.3s, box-shadow 0.4s;
-  min-width: 4px;
-}
-
-.poet-node:hover .poet-bar,
-.poet-node.active .poet-bar {
-  opacity: 0.9;
-  height: 10px;
-}
-
-.poet-bar--faro {
-  height: 10px;
-  opacity: 0.75;
-}
-
-.poet-node:hover .poet-bar--faro {
-  height: 14px;
-  opacity: 1;
-}
-
-/* The glowing node dot */
-.poet-dot {
-  position: absolute;
-  top: 50%;
-  left: 50%;
+.encounter--faro::before {
   width: 12px;
   height: 12px;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 3;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.poet-dot--faro {
-  width: 18px;
-  height: 18px;
+  background: var(--faro);
   box-shadow: 0 0 12px var(--color-accent-glow);
 }
 
-.poet-node:hover .poet-dot {
-  transform: translate(-50%, -50%) scale(1.4);
+.encounter.visible::before {
+  background: var(--poet-color, var(--color-text-soft));
 }
 
-.poet-node:hover .poet-dot--faro {
-  box-shadow: 0 0 20px rgba(139,34,82,0.3);
+.encounter--faro.visible::before {
+  background: var(--faro);
+  box-shadow: 0 0 20px rgba(139,34,82,0.25);
 }
 
-/* Label below the timeline line */
-.poet-label {
-  position: absolute;
-  top: calc(50% + 20px);
-  left: 50%;
-  transform: translateX(-50%);
+/* The encounter card */
+.encounter-card {
+  max-width: 26rem;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
   text-align: center;
-  opacity: 0.6;
-  transition: opacity 0.3s;
-  pointer-events: none;
-  font-family: var(--font-ui);
+  border: 1px solid transparent;
+  border-radius: 6px;
+  transition: background 0.4s, border-color 0.4s;
 }
 
-.poet-node:hover .poet-label { opacity: 1; }
-
-.poet-label-name {
-  display: block;
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--color-text);
-  letter-spacing: -0.01em;
-  white-space: nowrap;
+.encounter--faro .encounter-card {
+  background: rgba(139,34,82,0.03);
+  border-color: rgba(139,34,82,0.08);
 }
 
-.poet-label-years {
-  display: block;
-  font-size: 0.55rem;
-  color: var(--color-text-soft);
-  white-space: nowrap;
-  margin-top: 0.1rem;
-}
-
-.poet-label-tag {
-  display: inline-block;
-  font-size: 0.45rem;
-  padding: 0.08rem 0.3rem;
-  background: var(--color-accent);
-  color: #faf9f6;
-  border-radius: 2px;
-  text-transform: lowercase;
-  letter-spacing: 0.05em;
-  margin-top: 0.15rem;
-}
-
-/* ═══════════ CARD — hover detail ═══════════ */
-.poet-card {
-  position: fixed;
-  width: 18rem;
-  background: rgba(250, 249, 246, 0.97);
-  backdrop-filter: blur(8px);
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: 1.25rem 1.5rem;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s, transform 0.25s;
-  transform: translateY(4px);
-  z-index: 100;
-}
-
-.poet-card.visible {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
-}
-
-.poet-card-name {
+.encounter-name {
   font-family: var(--font-ui);
   font-size: 1.1rem;
   font-weight: 500;
+  letter-spacing: -0.01em;
   color: var(--color-text);
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.15rem;
 }
 
-.poet-card-years {
+.encounter-years {
   font-family: var(--font-ui);
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   color: var(--color-text-soft);
-  letter-spacing: 0.03em;
-  margin-bottom: 0.5rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.4rem;
 }
 
-.poet-card-desc {
-  font-size: 0.9rem;
-  font-style: italic;
-  color: var(--color-text-soft);
-  margin-bottom: 0.75rem;
-  line-height: 1.5;
-}
-
-.poet-card-tags {
+.encounter-tags {
   display: flex;
   gap: 0.3rem;
+  justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1.25rem;
 }
 
-.poet-card-tag {
+.encounter-tag {
   font-family: var(--font-ui);
-  font-size: 0.55rem;
-  padding: 0.15rem 0.45rem;
-  border-radius: 3px;
-  color: #faf9f6;
+  font-size: 0.5rem;
+  padding: 0.12rem 0.5rem;
+  border-radius: 2px;
   text-transform: lowercase;
   letter-spacing: 0.05em;
+  color: #faf9f6;
+  background: var(--tag-color, var(--color-text-soft));
 }
 
-.poet-card-link {
-  font-family: var(--font-ui);
-  font-size: 0.7rem;
-  display: inline-block;
-  padding: 0.3rem 0.6rem;
-  border: 1px solid var(--color-border);
-  border-radius: 4px;
-  color: var(--color-text-soft);
-  transition: border-color 0.2s, color 0.2s;
-  text-decoration: none;
+/* The poetic fragment — the heart */
+.encounter-fragment {
+  font-size: 1.05rem;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
 }
 
-.poet-card-link:hover {
+.encounter-fragment .verse {
+  display: block;
+  margin-bottom: 0.1rem;
+}
+
+.encounter-insight {
+  font-size: 0.9rem;
+  color: var(--color-text-soft);
+  line-height: 1.6;
+  font-style: normal;
+}
+
+.encounter-link {
+  display: inline-block;
+  margin-top: 1rem;
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  color: var(--color-text-soft);
+  border-bottom: 1px solid var(--color-border);
+  transition: color 0.3s, border-color 0.3s;
+}
+.encounter-link:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+/* ═══════════ SILENCE SPACE ═══════════ */
+.silence {
+  position: relative;
+  text-align: center;
+  padding: 5rem 0 3rem;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(1rem);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.silence.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.silence-symbol {
+  font-size: 1.2rem;
+  color: var(--color-text-faint);
+  user-select: none;
+  margin-bottom: 1rem;
+  letter-spacing: 0.3em;
+}
+
+.silence-text {
+  font-family: var(--font-ui);
+  font-size: 0.55rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-text-faint);
+  max-width: 16rem;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+/* ═══════════ FINALE ═══════════ */
+.finale {
+  text-align: center;
+  padding: 6rem 1.5rem 4rem;
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(2rem);
+  transition: opacity 0.8s ease 0.5s, transform 0.8s ease 0.5s;
+}
+
+.finale.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.finale-symbol {
+  font-size: 1rem;
+  color: var(--color-border);
+  margin-bottom: 2rem;
+  letter-spacing: 0.5em;
+  user-select: none;
+}
+
+.finale-text {
+  font-style: italic;
+  color: var(--color-text-soft);
+  max-width: 22rem;
+  margin: 0 auto 1.5rem;
+  line-height: 1.7;
+}
+
+.finale-link {
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  color: var(--color-text-soft);
+  transition: border-color 0.3s, color 0.3s;
+}
+.finale-link:hover {
   border-color: var(--color-accent);
   color: var(--color-accent);
 }
 
-/* ═══════════ SILENCE MARKERS ═══════════ */
-.silence-marker {
-  position: absolute;
-  top: 50%;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.silence-marker-line {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 1px;
-  height: 60px;
-  background: linear-gradient(to bottom, transparent, var(--color-border), transparent);
-}
-
-.silence-marker-icon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(90deg);
-  font-size: 1.2rem;
-  color: var(--color-text-faint);
-  opacity: 0.3;
-  user-select: none;
-}
-
-.silence-marker-label {
-  position: absolute;
-  bottom: -28px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: var(--font-ui);
-  font-size: 0.45rem;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--color-text-faint);
-  white-space: nowrap;
-  opacity: 0.4;
-}
-
-/* ═══════════ CONNECTION LINES ═══════════ */
-.connection {
-  position: absolute;
-  top: 50%;
-  height: 1px;
-  transform: translateY(-50%);
-  z-index: 0;
-  opacity: 0.08;
-  transition: opacity 0.5s;
-  pointer-events: none;
-}
-
-.poet-node:hover ~ .connection,
-.connection.highlight {
-  opacity: 0.2;
-}
-
-/* ═══════════ GALLERY SECTION ═══════════ */
-.gallery {
-  padding: 4rem 1.5rem;
-  max-width: var(--measure);
-  margin: 0 auto;
-}
-
-.gallery h2 {
-  font-family: var(--font-ui);
-  font-size: 1.25rem;
-  font-weight: 300;
-  text-align: center;
-  margin-bottom: 2rem;
-  color: var(--color-text-soft);
-}
-
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1rem;
-}
-
-.gallery-card {
-  padding: 1.25rem;
-  border: 1px solid var(--color-border);
-  border-radius: 6px;
-  transition: background 0.3s, border-color 0.3s;
-  text-decoration: none;
-  border-bottom: 1px solid var(--color-border);
-  color: var(--color-text);
-}
-
-.gallery-card:hover {
-  background: #f5f3ef;
-  border-color: var(--color-accent-light, var(--color-accent));
-}
-
-.gallery-card-name {
-  font-family: var(--font-ui);
-  font-size: 0.9rem;
-  font-weight: 500;
-  margin-bottom: 0.2rem;
-}
-
-.gallery-card-years {
-  font-family: var(--font-ui);
-  font-size: 0.6rem;
-  color: var(--color-text-soft);
-  margin-bottom: 0.5rem;
-}
-
-.gallery-card-desc {
-  font-size: 0.8rem;
-  font-style: italic;
-  color: var(--color-text-soft);
-  line-height: 1.4;
-}
-
-.gallery-card-tag {
-  display: inline-block;
-  font-family: var(--font-ui);
-  font-size: 0.5rem;
-  padding: 0.1rem 0.35rem;
-  background: var(--color-accent);
-  color: #faf9f6;
-  border-radius: 2px;
-  text-transform: lowercase;
-  margin-top: 0.4rem;
-}
-
-/* ═══════════ FOOTER / WHISPER ═══════════ */
+/* ═══════════ FOOTER ═══════════ */
 .footer {
   text-align: center;
-  padding: 3rem 1.5rem 2rem;
+  padding: 3rem 1.5rem 2.5rem;
   border-top: 1px solid var(--color-border);
   max-width: var(--measure);
   margin: 0 auto;
@@ -577,434 +417,311 @@ a:hover { border-color: var(--color-accent); }
 
 .footer p {
   font-family: var(--font-ui);
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: var(--color-text-soft);
-  margin-bottom: 0.5rem;
+  letter-spacing: 0.03em;
 }
 
-.footer .fleuron {
-  font-size: 1rem;
-  color: var(--color-border);
-  margin: 1.5rem 0;
-  user-select: none;
-}
-
-.footer .whisper {
-  font-size: 0.5rem;
+.footer-whisper {
+  font-size: 0.45rem;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.2em;
   color: var(--color-text-faint);
-  opacity: 0.25;
+  opacity: 0.2;
   transition: opacity 0.6s;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }
+.footer-whisper:hover { opacity: 1; }
+.footer-whisper a { color: var(--color-border); border: none; }
+.footer-whisper a:hover { color: var(--color-accent); }
 
-.footer .whisper:hover {
-  opacity: 1;
-}
-
-.footer .whisper a {
-  color: var(--color-border);
-  border: none;
-}
-.footer .whisper a:hover {
-  color: var(--color-accent);
+/* ═══════════ SILENCE BETWEEN ENCOUNTERS ═══════════ */
+.interval {
+  height: 6rem;
+  position: relative;
+  z-index: 1;
 }
 
 /* ═══════════ RESPONSIVE ═══════════ */
-@media (max-width: 640px) {
-  .timeline-surface { height: 500px; }
-  .poet-label-name { font-size: 0.65rem; }
-  .poet-card { width: 16rem; }
-  .gallery-grid { grid-template-columns: 1fr; }
-}
-
 @media (max-width: 480px) {
-  .timeline-surface { width: 1800px; height: 480px; padding: 0 2rem; }
-  .hero h1 { font-size: 1.8rem; }
+  .encounter-card { padding: 1.5rem 0.5rem; }
+  .encounter-fragment { font-size: 0.95rem; }
+  .interval { height: 4rem; }
+  .silence { padding: 3rem 0 2rem; }
 }
 </style>
 </head>
 <body>
 
-<!-- ═══════════ HERO ═══════════ -->
+<!-- ═══════════════════════════════════════
+     HERO
+     ═══════════════════════════════════════ -->
 <section class="hero">
-  <div class="hero-year hero-year--start">1800</div>
-  <div class="hero-year hero-year--end">2000</div>
-  <h1>Il <em>Sentiero</em> dei Poeti</h1>
-  <p>
-    Due secoli in una linea. Ogni poeta un albero in questo bosco del tempo.<br />
-    Scorri, fermati, ascolta il silenzio tra un'epoca e l'altra.
+  <div class="hero-years"><span>1820</span></div>
+  <h1>
+    Il sentiero<br/>
+    dei <span class="faro">poeti</span>
+  </h1>
+  <p class="hero-sub">
+    due secoli &middot; cinque voci &middot; un bosco
   </p>
-  <button class="hero-scroll" onclick="document.querySelector('.timeline-section').scrollIntoView({behavior:'smooth'})">
-    ✦ esplora la linea del tempo
+  <div class="hero-years"><span>2000</span></div>
+  <button class="hero-scroll" onclick="document.getElementById('sentiero').scrollIntoView({behavior:'smooth'})">
+    ✦ percorri il sentiero
   </button>
 </section>
 
-<!-- ═══════════ TIMELINE ═══════════ -->
-<section class="timeline-section" id="timeline">
-  <div class="timeline-header">
-    <h2>1830 — <strong>1994</strong></h2>
+<!-- ═══════════════════════════════════════
+     SENTIERO — vertical journey
+     ═══════════════════════════════════════ -->
+<div class="wrapper">
+<div class="sentiero" id="sentiero">
+
+  <!-- ── ERA 1: 1830–1890 ── -->
+  <div class="era">
+    <span class="era-label">Prima onda &middot; 1830–1890</span>
   </div>
 
-  <div class="timeline-track" id="track">
-    <div class="timeline-surface" id="surface">
-
-      <!-- AXIS -->
-      <div class="timeline-axis"></div>
-
-      <!-- YEAR MARKERS (every 20 years, 1800–2000) -->
-      <span class="year-marker year-marker--major" style="left: 0%;">1820</span>
-      <span class="year-marker" style="left: 9.09%;">1840</span>
-      <span class="year-marker year-marker--major" style="left: 18.18%;">1860</span>
-      <span class="year-marker" style="left: 27.27%;">1880</span>
-      <span class="year-marker year-marker--major" style="left: 36.36%;">1900</span>
-      <span class="year-marker" style="left: 45.45%;">1920</span>
-      <span class="year-marker year-marker--major" style="left: 54.55%;">1940</span>
-      <span class="year-marker" style="left: 63.64%;">1960</span>
-      <span class="year-marker year-marker--major" style="left: 72.73%;">1980</span>
-      <span class="year-marker" style="left: 81.82%;">2000</span>
-
-      <!-- POET DATA: positions calculated as percentages of the 2200px surface
-           timeline range: 1800–2020 (220 years = 2200px → 1yr = 10px)
-           Dickinson: 1830–1886 (born at 30%, width = 56/220*100 = 25.45%)
-           Rimbaud:   1854–1891
-           Pessoa:    1888–1935
-           Montale:   1896–1981
-           Bukowski:  1920–1994
-      -->
-
-      <!-- CONNECTIONS (overlaps) -->
-      <!-- Dickinson ↔ Rimbaud: 1854–1886 = 32 overlapping years -->
-      <div class="connection" style="left: 24.55%; width: 14.55%; background: var(--green);"></div>
-      <!-- Dickinson ↔ Pessoa (none — 1886 vs 1888, 2yr gap) -->
-      <!-- Rimbaud ↔ Pessoa: 1888–1891 = 3 years -->
-      <div class="connection" style="left: 40%; width: 1.36%; background: var(--faro-color);"></div>
-      <!-- Pessoa ↔ Montale: 1896–1935 = 39 years -->
-      <div class="connection" style="left: 43.64%; width: 17.73%; background: var(--gold);"></div>
-      <!-- Pessoa ↔ Bukowski: 1920–1935 = 15 years -->
-      <div class="connection" style="left: 54.55%; width: 6.82%; background: var(--gold);"></div>
-      <!-- Montale ↔ Bukowski: 1920–1981 = 61 years -->
-      <div class="connection" style="left: 54.55%; width: 27.73%; background: var(--blue);"></div>
-
-      <!-- SILENCE MARKERS -->
-      <!-- Rimbaud's silence: 1874 (age 20) → 1891. He stopped at 20 in 1874 -->
-      <div class="silence-marker" style="left: 33.64%;">
-        <div class="silence-marker-icon">❦</div>
-        <div class="silence-marker-line"></div>
-        <div class="silence-marker-label">silenzio</div>
+  <!-- DICKINSON -->
+  <div class="encounter" style="--poet-color: var(--green);">
+    <div class="encounter-card">
+      <div class="encounter-name">Emily Dickinson</div>
+      <div class="encounter-years">1830–1886</div>
+      <div class="encounter-tags">
+        <span class="encounter-tag" style="--tag-color: var(--green);">isolamento</span>
+        <span class="encounter-tag" style="--tag-color: var(--green);">dash</span>
       </div>
-      <!-- Bukowski's first book: 1960 (age 40) — at 1960 -->
-      <div class="silence-marker" style="left: 72.73%;">
-        <div class="silence-marker-icon">❦</div>
-        <div class="silence-marker-line"></div>
-        <div class="silence-marker-label">pubblicazione</div>
+      <div class="encounter-fragment">
+        <span class="verse">«I dwell in Possibility —</span>
+        <span class="verse">A fairer House than Prose —</span>
+        <span class="verse">More numerous of Windows —</span>
+        <span class="verse">Superior — for Doors —»</span>
       </div>
-
-      <!-- DICKINSON: born 1830, died 1886 -->
-      <div class="poet-node" data-slug="dickinson" style="left: 30%;">
-        <div class="poet-bar" style="left: -2%; width: 25.45%; background: var(--green);"></div>
-        <div class="poet-dot" style="background: var(--green);"></div>
-        <div class="poet-label">
-          <span class="poet-label-name">Emily Dickinson</span>
-          <span class="poet-label-years">1830–1886</span>
-          <span class="poet-label-tag" style="background: var(--green);">isolamento</span>
-        </div>
-      </div>
-
-      <!-- RIMBAUD: born 1854, died 1891 -->
-      <div class="poet-node" data-slug="rimbaud" style="left: 44.55%;">
-        <div class="poet-bar poet-bar--faro" style="left: -8.18%; width: 16.82%; background: var(--faro-color);"></div>
-        <div class="poet-dot poet-dot--faro" style="background: var(--faro-color);"></div>
-        <div class="poet-label">
-          <span class="poet-label-name">✦ Arthur Rimbaud</span>
-          <span class="poet-label-years">1854–1891</span>
-          <span class="poet-label-tag" style="background: var(--faro-color);">veggenza</span>
-        </div>
-      </div>
-
-      <!-- PESSOA: born 1888, died 1935 -->
-      <div class="poet-node" data-slug="pessoa" style="left: 53.64%;">
-        <div class="poet-bar" style="left: -10.91%; width: 21.36%; background: var(--gold);"></div>
-        <div class="poet-dot" style="background: var(--gold);"></div>
-        <div class="poet-label">
-          <span class="poet-label-name">Fernando Pessoa</span>
-          <span class="poet-label-years">1888–1935</span>
-          <span class="poet-label-tag" style="background: var(--gold);">identità</span>
-        </div>
-      </div>
-
-      <!-- MONTALE: born 1896, died 1981 -->
-      <div class="poet-node" data-slug="montale" style="left: 58.18%;">
-        <div class="poet-bar" style="left: -14.55%; width: 38.64%; background: var(--blue);"></div>
-        <div class="poet-dot" style="background: var(--blue);"></div>
-        <div class="poet-label">
-          <span class="poet-label-name">Eugenio Montale</span>
-          <span class="poet-label-years">1896–1981</span>
-          <span class="poet-label-tag" style="background: var(--blue);">negativo</span>
-        </div>
-      </div>
-
-      <!-- BUKOWSKI: born 1920, died 1994 -->
-      <div class="poet-node" data-slug="bukowski" style="left: 65.45%;">
-        <div class="poet-bar poet-bar--faro" style="left: -21.82%; width: 33.64%; background: var(--faro-color);"></div>
-        <div class="poet-dot poet-dot--faro" style="background: var(--faro-color);"></div>
-        <div class="poet-label">
-          <span class="poet-label-name">✦ Charles Bukowski</span>
-          <span class="poet-label-years">1920–1994</span>
-          <span class="poet-label-tag" style="background: var(--faro-color);">resistenza</span>
-        </div>
-      </div>
-
-    </div><!-- /surface -->
-  </div><!-- /track -->
-
-  <!-- FLOATING CARD -->
-  <div class="poet-card" id="poetCard">
-    <div class="poet-card-name" id="cardName"></div>
-    <div class="poet-card-years" id="cardYears"></div>
-    <div class="poet-card-desc" id="cardDesc"></div>
-    <div class="poet-card-tags" id="cardTags"></div>
-    <a class="poet-card-link" id="cardLink" href="#">→ Leggi la scheda</a>
+      <p class="encounter-insight">
+        Scriveva su foglietti, li cuciva in fascicoli, li chiudeva in un cassetto.
+        La sua stanza era più grande del mondo. Non voleva lettori. Voleva la verità.
+      </p>
+      <a class="encounter-link" href="https://poesia.pyragogy.org/poeti/dickinson">
+        → Leggi la scheda
+      </a>
+    </div>
   </div>
 
-  <!-- Legend -->
-  <div style="text-align: center; font-family: var(--font-ui); font-size: 0.65rem; color: var(--color-text-soft); padding: 1rem 1.5rem;">
-    Trascina la linea del tempo · passa sui poeti per scoprirli
-  </div>
-  <div style="text-align: center; font-family: var(--font-ui); font-size: 0.55rem; color: var(--color-text-faint); display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; padding: 0 1.5rem 2rem;">
-    <span>✦ <span style="color: var(--faro-color);">bordeaux</span> = i due fari</span>
-    <span>— linee = vite sovrapposte</span>
-    <span>❦ = silenzi</span>
-  </div>
-</section>
+  <div class="interval"></div>
 
-<!-- ═══════════ GALLERY ═══════════ -->
-<section class="gallery">
-  <h2>I poeti di questo bosco</h2>
-  <div class="gallery-grid">
-    <a href="https://poesia.pyragogy.org/poeti/dickinson" class="gallery-card">
-      <div class="gallery-card-name">Emily Dickinson</div>
-      <div class="gallery-card-years">1830–1886</div>
-      <div class="gallery-card-desc">La camera come cosmo</div>
-      <span class="gallery-card-tag">isolamento</span>
-    </a>
-    <a href="https://poesia.pyragogy.org/poeti/rimbaud" class="gallery-card">
-      <div class="gallery-card-name">✦ Arthur Rimbaud</div>
-      <div class="gallery-card-years">1854–1891</div>
-      <div class="gallery-card-desc">Il silenzio a 20 anni</div>
-      <span class="gallery-card-tag">veggenza</span>
-    </a>
-    <a href="https://poesia.pyragogy.org/poeti/pessoa" class="gallery-card">
-      <div class="gallery-card-name">Fernando Pessoa</div>
-      <div class="gallery-card-years">1888–1935</div>
-      <div class="gallery-card-desc">Moltiplicarsi per non esistere</div>
-      <span class="gallery-card-tag">identità</span>
-    </a>
-    <a href="https://poesia.pyragogy.org/poeti/montale" class="gallery-card">
-      <div class="gallery-card-name">Eugenio Montale</div>
-      <div class="gallery-card-years">1896–1981</div>
-      <div class="gallery-card-desc">La parola come scoglio</div>
-      <span class="gallery-card-tag">negativo</span>
-    </a>
-    <a href="https://poesia.pyragogy.org/poeti/bukowski" class="gallery-card">
-      <div class="gallery-card-name">✦ Charles Bukowski</div>
-      <div class="gallery-card-years">1920–1994</div>
-      <div class="gallery-card-desc">La poesia come sopravvivenza</div>
-      <span class="gallery-card-tag">resistenza</span>
-    </a>
+  <!-- RIMBAUD — faro -->
+  <div class="encounter encounter--faro" style="--poet-color: var(--faro);">
+    <div class="encounter-card">
+      <div class="encounter-name">✦ Arthur Rimbaud</div>
+      <div class="encounter-years">1854–1891</div>
+      <div class="encounter-tags">
+        <span class="encounter-tag" style="--tag-color: var(--faro);">veggenza</span>
+        <span class="encounter-tag" style="--tag-color: var(--faro);">silenzio</span>
+      </div>
+      <div class="encounter-fragment">
+        <span class="verse">«Elle est retrouvée!</span>
+        <span class="verse">Quoi? — L'Éternité.</span>
+        <span class="verse">C'est la mer mêlée</span>
+        <span class="verse">Au soleil.»</span>
+      </div>
+      <p class="encounter-insight">
+        Il veggente. A 20 anni ha smesso di scrivere per sempre.
+        Aveva detto tutto quello che serve. Ha scelto di vivere
+        invece che di scrivere di vivere.
+      </p>
+      <a class="encounter-link" href="https://poesia.pyragogy.org/poeti/rimbaud">
+        → Leggi la scheda
+      </a>
+    </div>
   </div>
-</section>
 
-<!-- ═══════════ FOOTER ═══════════ -->
+  <!-- SILENCE: Rimbaud stops writing -->
+  <div class="silence">
+    <div class="silence-symbol">❦</div>
+    <p class="silence-text">
+      Rimbaud tace a 20 anni.<br/>
+      Per 37 anni ancora vivo, ma la poesia è finita.<br/>
+      Il silenzio più famoso della letteratura.
+    </p>
+  </div>
+
+  <!-- ── ERA 2: 1888–1935 ── -->
+  <div class="era">
+    <span class="era-label">Seconda onda &middot; 1888–1935</span>
+  </div>
+
+  <!-- PESSOA -->
+  <div class="encounter" style="--poet-color: var(--gold);">
+    <div class="encounter-card">
+      <div class="encounter-name">Fernando Pessoa</div>
+      <div class="encounter-years">1888–1935</div>
+      <div class="encounter-tags">
+        <span class="encounter-tag" style="--tag-color: var(--gold);">eteronimi</span>
+        <span class="encounter-tag" style="--tag-color: var(--gold);">identità</span>
+      </div>
+      <div class="encounter-fragment">
+        <span class="verse">«O poeta é um fingidor.</span>
+        <span class="verse">Finge tão completamente</span>
+        <span class="verse">Que chega a fingir que é dor</span>
+        <span class="verse">A dor que deveras sente.»</span>
+      </div>
+      <p class="encounter-insight">
+        Non avendo un sé, lo inventò. Quattro poeti in uno,
+        ognuno con voce, biografia e filosofia. Scriveva per sé,
+        per i suoi eteronimi, per nessuno. Il riconoscimento
+        arrivò tutto dopo la morte.
+      </p>
+      <a class="encounter-link" href="https://poesia.pyragogy.org/poeti/pessoa">
+        → Leggi la scheda
+      </a>
+    </div>
+  </div>
+
+  <div class="interval"></div>
+
+  <!-- MONTALE -->
+  <div class="encounter" style="--poet-color: var(--blue);">
+    <div class="encounter-card">
+      <div class="encounter-name">Eugenio Montale</div>
+      <div class="encounter-years">1896–1981</div>
+      <div class="encounter-tags">
+        <span class="encounter-tag" style="--tag-color: var(--blue);">negativo</span>
+        <span class="encounter-tag" style="--tag-color: var(--blue);">ermetismo</span>
+      </div>
+      <div class="encounter-fragment">
+        <span class="verse">«Non chiederci la parola che squadri da ogni lato</span>
+        <span class="verse">l'animo nostro informe, e a lettere di fuoco</span>
+        <span class="verse">lo dichiari e risplenda come un croco</span>
+        <span class="verse">perduto in mezzo a un polveroso prato.»</span>
+      </div>
+      <p class="encounter-insight">
+        Scrive come un uomo che ha visto il Novecento in faccia
+        e non ha chiuso gli occhi. La poesia non salva, non redime.
+        Ma tiene. Come uno scoglio tiene il mare.
+      </p>
+      <a class="encounter-link" href="https://poesia.pyragogy.org/poeti/montale">
+        → Leggi la scheda
+      </a>
+    </div>
+  </div>
+
+  <!-- ── ERA 3: 1920–1994 ── -->
+  <div class="era">
+    <span class="era-label">Terza onda &middot; 1920–1994</span>
+  </div>
+
+  <!-- SILENCE: 29 years of emptiness between Rimbaud's death and Bukowski's birth -->
+  <div class="silence">
+    <div class="silence-symbol">· · ·</div>
+    <p class="silence-text">
+      Tra la morte di Rimbaud e la nascita di Bukowski<br/>
+      passano 29 anni in cui nessuno dei nostri poeti è vivo.<br/>
+      Un deserto. Il silenzio tra i silenzi.
+    </p>
+  </div>
+
+  <!-- BUKOWSKI — faro -->
+  <div class="encounter encounter--faro" style="--poet-color: var(--faro);">
+    <div class="encounter-card">
+      <div class="encounter-name">✦ Charles Bukowski</div>
+      <div class="encounter-years">1920–1994</div>
+      <div class="encounter-tags">
+        <span class="encounter-tag" style="--tag-color: var(--faro);">resistenza</span>
+        <span class="encounter-tag" style="--tag-color: var(--faro);">realismo</span>
+      </div>
+      <div class="encounter-fragment">
+        <span class="verse">«the bluebird</span>
+        <span class="verse">wants to get out</span>
+        <span class="verse">but I'm too tough for him,</span>
+        <span class="verse">I say, stay in there,</span>
+        <span class="verse">I'm not getting anybody's heart.»</span>
+      </div>
+      <p class="encounter-insight">
+        Pubblica il primo libro a 40 anni. La poesia come
+        sopravvivenza. Ha preso la vita più brutta e l'ha resa
+        non solo sopportabile, ma bella. Senza mentire. Senza tradire.
+      </p>
+      <a class="encounter-link" href="https://poesia.pyragogy.org/poeti/bukowski">
+        → Leggi la scheda
+      </a>
+    </div>
+  </div>
+
+  <!-- SILENCE: Bukowski's lateness -->
+  <div class="silence">
+    <div class="silence-symbol">❦</div>
+    <p class="silence-text">
+      Bukowski ha aspettato 40 anni prima di pubblicare.<br/>
+      La poesia non scade. La voce arriva quando è pronta.
+    </p>
+  </div>
+
+  <!-- ── FINALE ── -->
+  <div class="finale" id="finale">
+    <div class="finale-symbol">❦</div>
+    <p class="finale-text">
+      Cinque poeti. Due secoli.<br/>
+      Ogni voce un territorio,<br/>
+      ogni silenzio un sentiero.<br/>
+      Il bosco cresce.
+    </p>
+    <a class="finale-link" href="https://poesia.pyragogy.org">
+      Torna all'atlante
+    </a>
+    <div style="margin-top: 1rem;">
+      <a class="finale-link" href="https://poesia.pyragogy.org/silenzi">
+        I silenzi
+      </a>
+    </div>
+  </div>
+
+</div><!-- /sentiero -->
+</div><!-- /wrapper -->
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════ -->
 <footer class="footer">
-  <div class="fleuron" aria-hidden="true">❦</div>
   <p>Poesia per i Poeti — un atlante dei talenti del loro tempo</p>
-  <p style="font-size: 0.65rem;">
-    <a href="https://poesia.pyragogy.org">Torna all'atlante</a>
-    <span style="color: var(--color-border); margin: 0 0.5rem;">·</span>
-    <a href="https://poesia.pyragogy.org/silenzi">I silenzi</a>
-    <span style="color: var(--color-border); margin: 0 0.5rem;">·</span>
-    <a href="https://poesia.pyragogy.org/about">Il manifesto</a>
-  </p>
-  <div class="whisper">
+  <div class="footer-whisper">
     <span aria-hidden="true">❦</span>
     <a href="https://poesia.pyragogy.org/poemi/angina">quando un poeta smette di scrivere, il silenzio scrive per lui</a>
   </div>
 </footer>
 
+<!-- ═══════════════════════════════════════
+     SCROLL REVEAL
+     ═══════════════════════════════════════ -->
 <script>
-// ═══════════════════════════════════════
-// POET DATA
-// ═══════════════════════════════════════
-const poetData = {
-  dickinson: {
-    name: "Emily Dickinson",
-    years: "1830–1886",
-    desc: "La camera come cosmo. Scriveva su foglietti cuciti in fascicoli chiusi in un cassetto. La poesia come indagine interiore.",
-    tags: ["isolamento", "dash", "lirica"],
-    tagColors: ["#6b8e6b", "#6b8e6b", "#6b8e6b"],
-    slug: "dickinson",
-    fragment: "«I dwell in Possibility — / A fairer House than Prose — »"
-  },
-  rimbaud: {
-    name: "✦ Arthur Rimbaud",
-    years: "1854–1891",
-    desc: "Il veggente. Scrive 5 anni, poi tace per sempre. La parola come allucinazione controllata.",
-    tags: ["veggenza", "simbolismo", "silenzio"],
-    tagColors: ["#8b2252", "#8b2252", "#8b2252"],
-    slug: "rimbaud",
-    fragment: "«Je est un autre. Tant pis pour le bois qui se trouve violon!»"
-  },
-  pessoa: {
-    name: "Fernando Pessoa",
-    years: "1888–1935",
-    desc: "Moltiplicarsi per non esistere. Quattro poeti in uno, ognuno con voce e filosofia diversa.",
-    tags: ["eteronimi", "modernismo", "identità"],
-    tagColors: ["#b8860b", "#b8860b", "#b8860b"],
-    slug: "pessoa",
-    fragment: "«O poeta é um fingidor. Finge tão completamente.»"
-  },
-  montale: {
-    name: "Eugenio Montale",
-    years: "1896–1981",
-    desc: "La parola come scoglio. Il negativo detto con esattezza. Poesia che resiste al dolore del vivere.",
-    tags: ["ermetismo", "negativo", "scabri"],
-    tagColors: ["#4a6a8a", "#4a6a8a", "#4a6a8a"],
-    slug: "montale",
-    fragment: "«Non chiederci la parola che squadri da ogni lato l'animo nostro informe.»"
-  },
-  bukowski: {
-    name: "✦ Charles Bukowski",
-    years: "1920–1994",
-    desc: "Il vecchio ubriaco. La poesia come sopravvivenza. Il fango che diventa oro.",
-    tags: ["resistenza", "underground", "realismo"],
-    tagColors: ["#8b2252", "#8b2252", "#8b2252"],
-    slug: "bukowski",
-    fragment: "«the bluebird wants to get out but I'm too tough for him»"
-  }
-};
-
-// ═══════════════════════════════════════
-// CARD LOGIC
-// ═══════════════════════════════════════
-const card = document.getElementById('poetCard');
-const nodes = document.querySelectorAll('.poet-node');
-let activeNode = null;
-
-function showCard(node, data) {
-  document.getElementById('cardName').textContent = data.name;
-  document.getElementById('cardYears').textContent = data.years;
-  document.getElementById('cardDesc').innerHTML =
-    `“${data.desc}”<br><span style="display:block;margin-top:0.5rem;font-size:0.85rem;color:var(--color-text-faint);">${data.fragment}</span>`;
-
-  const tagsEl = document.getElementById('cardTags');
-  tagsEl.innerHTML = '';
-  data.tags.forEach((tag, i) => {
-    const span = document.createElement('span');
-    span.className = 'poet-card-tag';
-    span.style.background = data.tagColors[i % data.tagColors.length];
-    span.textContent = tag;
-    tagsEl.appendChild(span);
-  });
-
-  const link = document.getElementById('cardLink');
-  link.href = `https://poesia.pyragogy.org/poeti/${data.slug}`;
-
-  card.classList.add('visible');
-  activeNode = node;
-}
-
-function hideCard() {
-  card.classList.remove('visible');
-  if (activeNode) {
-    activeNode.classList.remove('active');
-    activeNode = null;
-  }
-}
-
-nodes.forEach(node => {
-  node.addEventListener('mouseenter', () => {
-    const slug = node.dataset.slug;
-    const data = poetData[slug];
-    if (!data) return;
-    showCard(node, data);
-    node.classList.add('active');
-  });
-
-  node.addEventListener('mouseleave', () => {
-    hideCard();
-  });
-
-  node.addEventListener('click', () => {
-    const slug = node.dataset.slug;
-    const data = poetData[slug];
-    if (!data) return;
-    window.open(`https://poesia.pyragogy.org/poeti/${data.slug}`, '_blank');
-  });
-});
-
-document.addEventListener('mousemove', (e) => {
-  if (card.classList.contains('visible')) {
-    const x = Math.min(e.clientX + 20, window.innerWidth - 320);
-    const y = Math.min(e.clientY - 20, window.innerHeight - 300);
-    card.style.left = Math.max(10, x) + 'px';
-    card.style.top = Math.max(10, y) + 'px';
-  }
-});
-
-// ═══════════════════════════════════════
-// DRAG SCROLL
-// ═══════════════════════════════════════
-const track = document.getElementById('track');
-let isDragging = false;
-let startX, scrollLeft;
-
-track.addEventListener('mousedown', (e) => {
-  isDragging = true;
-  startX = e.pageX - track.offsetLeft;
-  scrollLeft = track.scrollLeft;
-  track.style.cursor = 'grabbing';
-});
-
-track.addEventListener('mousemove', (e) => {
-  if (!isDragging) return;
-  e.preventDefault();
-  const x = e.pageX - track.offsetLeft;
-  const walk = (x - startX) * 1.5;
-  track.scrollLeft = scrollLeft - walk;
-});
-
-document.addEventListener('mouseup', () => {
-  if (isDragging) {
-    isDragging = false;
-    track.style.cursor = 'grab';
-  }
-});
-
-// ═══════════════════════════════════════
-// KEYBOARD: arrow keys scroll timeline
-// ═══════════════════════════════════════
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
-    const section = document.querySelector('.timeline-section');
-    section.scrollIntoView({ behavior: 'smooth' });
-    track.scrollBy({
-      left: e.key === 'ArrowRight' ? 200 : -200,
-      behavior: 'smooth'
+(function() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
     });
-  }
-});
+  }, {
+    threshold: 0.2,
+    rootMargin: '0px 0px -50px 0px'
+  });
 
-// ═══════════════════════════════════════
-// ON LOAD: subtle centering
-// ═══════════════════════════════════════
-window.addEventListener('load', () => {
-  // Auto-center first poet on load
-  setTimeout(() => {
-    track.scrollLeft = 400;
-  }, 200);
-});
+  document.querySelectorAll('.encounter, .silence, .finale').forEach(el => {
+    observer.observe(el);
+  });
+
+  // Subtle parallax for the vertical line feel
+  const sentiero = document.querySelector('.sentiero');
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        // The line is CSS pseudo-element, no JS needed
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+})();
 </script>
 </body>
 </html>
